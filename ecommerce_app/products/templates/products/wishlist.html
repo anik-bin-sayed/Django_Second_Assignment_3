@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="close-menu"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Categories</a></li>
+            <li><a href="dashboard.html">New Arrivals</a></li>
+            <li><a href="dashboard.html">Trending</a></li>
+            <li><a href="dashboard.html">Sale</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="order-history.html">Orders</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </div>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist-section">
+        <div class="container">
+            <div class="wishlist-header">
+                <h1>My Wishlist</h1>
+                <p>Save items you love for later</p>
+            </div>
+            
+            <div class="wishlist-content">
+                <div class="wishlist-actions">
+                    <div class="wishlist-info">
+                        <p>You have <span id="wishlistCount">0</span> items in your wishlist</p>
+                    </div>
+                    <div class="wishlist-buttons">
+                        <button class="btn btn-outline" id="shareWishlistBtn">
+                            <i class="fas fa-share-alt"></i> Share Wishlist
+                        </button>
+                        <button class="btn btn-primary" id="addAllToCartBtn">
+                            <i class="fas fa-shopping-cart"></i> Add All to Cart
+                        </button>
+                    </div>
+                </div>
+                
+               <h1>Wishlist is Empty</h1>
+                
+            </div>
+        </div>
+    </section>
+
+  
+
+{% endblock content %}

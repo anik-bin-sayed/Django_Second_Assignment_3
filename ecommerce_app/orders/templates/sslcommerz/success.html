@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment Successful - Molla{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="page-header text-center">
+        <div class="container">
+            <h1 class="page-title">Payment Successful</h1>
+        </div>
+    </div>
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Payment Success
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="page-content pb-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+
+                    <div class="card border-success mb-3">
+                        <div class="card-body text-center py-5">
+
+                            <div class="mb-4">
+                                <i class="icon-check-circle"
+                                   style="font-size:80px;color:#28a745;"></i>
+                            </div>
+
+                            <h2 class="text-success mb-3">
+                                Payment Successful!
+                            </h2>
+
+                            <p class="lead mb-4">
+                                Your payment has been completed successfully.
+                            </p>
+
+                            <div class="alert alert-info text-left">
+                                <h5 class="mb-3">Order Details</h5>
+
+                                <p class="mb-1">
+                                    <strong>Order ID:</strong>
+                                    #{{ order.id }}
+                                </p>
+
+                                <p class="mb-1">
+                                    <strong>Order Status:</strong>
+                                    <span class="badge badge-success">
+                                        {{ order.status|title }}
+                                    </span>
+                                </p>
+
+                                <p class="mb-0">
+                                    <strong>Total Amount:</strong>
+                                    ${{ order.total_amount }}
+                                </p>
+                            </div>
+
+                            
+                            <div class="alert alert-light text-left">
+                                <h6 class="mb-3">Payment Details</h6>
+
+                                <p class="mb-1 small">
+                                    <strong>Transaction ID:</strong>
+                                    {{ payment.transaction_id }}
+                                </p>
+
+                                <p class="mb-1 small">
+                                    <strong>Validation ID:</strong>
+                                    {{ payment.val_id }}
+                                </p>
+
+                                <p class="mb-1 small">
+                                    <strong>Bank Transaction ID:</strong>
+                                    {{ payment.bank_tran_id }}
+                                </p>
+
+                                <p class="mb-1 small">
+                                    <strong>Amount Paid:</strong>
+                                    ${{ payment.amount }}
+                                </p>
+
+                                <p class="mb-1 small">
+                                    <strong>Payment Status:</strong>
+                                    <span class="badge badge-success">
+                                        {{ payment.status|title }}
+                                    </span>
+                                </p>
+
+                                {% if payment.card_type %}
+                                <p class="mb-1 small">
+                                    <strong>Card Type:</strong>
+                                    {{ payment.card_type }}
+                                </p>
+
+                                <p class="mb-0 small">
+                                    <strong>Card Brand:</strong>
+                                    {{ payment.card_brand }}
+                                </p>
+                            </div>
+                            {% endif %}
+
+                            <p class="text-muted mb-4">
+                                A confirmation email has been sent to your
+                                registered email address.
+                            </p>
+
+                            <div class="mt-4">
+                                <a href="{% url 'list_product' %}"
+                                   class="btn btn-outline-primary-2">
+                                    <span>Continue Shopping</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

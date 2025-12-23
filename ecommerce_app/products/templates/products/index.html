@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .slider-section {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        /* fixed height */
+        min-height: 400px;
+        /* screen choto hole */
+        overflow: hidden;
+    }
+
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 600px;
+        border: 1px solid black;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+    }
+
+    .slide-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+    }
+
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        padding: 10px 15px;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        z-index: 2;
+        border: none;
+    }
+
+    .prev-btn {
+        left: 20px;
+    }
+
+    .next-btn {
+        right: 20px;
+    }
+
+    .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .slider-dots .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .slider-dots .dot.active {
+        background: white;
+    }
+
+
+    .product-img {
+        height: 250px;
+        width: 220px;
+        object-fit: cover;
+        padding: 0;
+    }
+
+    .card {
+        transition: 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+    }
+
+    .filter-list a.active {
+        font-weight: bold;
+        color: #0d6efd;
+    }
+
+    .pagination {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination-btn {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        text-decoration: none;
+    }
+
+    .pagination-btn.active {
+        background: #0d6efd;
+        color: white;
+    }
+
+    .row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .product_cart {
+        width: 220px;
+        height: auto;
+        margin: 10px;
+        padding-bottom: 10px;
+    }
+
+    .cart-wish {
+        display: flex;
+        gap: 2px;
+    }
+</style>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <button class="close-menu"><i class="fas fa-times"></i></button>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="mobile-dropdown">
+            <a href="dashboard.html">Categories <i class="fas fa-chevron-down"></i></a>
+            <ul class="mobile-submenu">
+                <li><a href="dashboard.html?cat=men">Men</a></li>
+                <li><a href="dashboard.html?cat=women">Women</a></li>
+                <li><a href="dashboard.html?cat=kids">Kids</a></li>
+                <li><a href="dashboard.html?cat=accessories">Accessories</a></li>
+            </ul>
+        </li>
+        <li><a href="dashboard.html">New Arrivals</a></li>
+        <li><a href="dashboard.html">Trending</a></li>
+        <li><a href="dashboard.html">Sale</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="order-history.html">Orders</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+    </ul>
+</div>
+
+<!-- Hero Section -->
+<section class="slider-section">
+    <div class="slider">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80"
+                alt="Summer Collection">
+            <div class="slide-content">
+                <h1>Summer Collection 2023</h1>
+                <p>Discover the latest trends in fashion with our exclusive collection</p>
+                <a href="dashboard.html" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1600&q=80"
+                alt="New Arrivals">
+            <div class="slide-content">
+                <h1>New Arrivals</h1>
+                <p>Explore our latest fashion arrivals for this season</p>
+                <a href="dashboard.html?cat=new" class="btn btn-primary">View New Arrivals</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1600&q=80"
+                alt="Sale Banner">
+            <div class="slide-content">
+                <h1>Up to 50% Off</h1>
+                <p>Don't miss our biggest sale of the season</p>
+                <a href="dashboard.html?filter=sale" class="btn btn-primary">Shop Sale</a>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="slider-btn prev-btn">&#10094;</button>
+        <button class="slider-btn next-btn">&#10095;</button>
+
+        <!-- Dots -->
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </div>
+</section>
+
+
+<!-- Categories Section -->
+<section class="categories">
+    <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            {% for category in categories %}
+            <div class="category-card">
+                <a href="{% url 'category_products' category.slug %}">
+                    <img src="{{category.category_image}}" alt="Men's Clothing">
+                    <h3>{{category.name}}</h3>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="featured-products py-10 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Featured Products</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {% for product in featured_products %}
+            <div class="product_cart mb-4">
+                <div class="card flex">
+
+                    {% if product.images.first %}
+                    <a href="{% url 'product_details' product_id=product.id %}">
+                        <img src="{{ product.images.first.image.url }}" class="card-img-top product-img"
+                            alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+                    </a>
+                    {% endif %}
+
+                    <div class="card-body text-center">
+                        <h5>{{ product.name }}</h5>
+
+                        {% if product.discount_price %}
+                        <p>
+                            <del>৳{{ product.base_price }}</del>
+                            <strong>৳{{ product.current_price }}</strong>
+                        </p>
+                        {% else %}
+                        <p>৳{{ product.current_price }}</p>
+                        {% endif %}
+                        {% if variant %}
+                        <div class="cart-wish d-flex gap-2">
+                            <a href="{% url 'add_to_cart' variant.id %}" class="btn btn-sm btn-primary">
+                                Add to Cart
+                            </a>
+                            <a href="{% url 'add_to_cart' variant.id %}" class="btn btn-sm btn-primary">
+                                Add to Wishlist
+                            </a>
+                        </div>
+                        {% else %}
+                        <button class="btn btn-sm btn-secondary" disabled>No Variant</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center col-span-4 text-gray-500">No featured products available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+        const nextBtn = document.querySelector(".next-btn");
+        const prevBtn = document.querySelector(".prev-btn");
+
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+
+            slides.forEach((slide, i) => {
+                slide.classList.remove("active");
+                dots[i].classList.remove("active");
+            });
+
+            slides[index].classList.add("active");
+            dots[index].classList.add("active");
+            currentIndex = index;
+        }
+
+        nextBtn.addEventListener("click", () => showSlide(currentIndex + 1));
+        prevBtn.addEventListener("click", () => showSlide(currentIndex - 1));
+
+        dots.forEach(dot => {
+            dot.addEventListener("click", function () {
+                showSlide(parseInt(this.getAttribute("data-slide")));
+            });
+        });
+
+        // Auto-slide every 5s
+        setInterval(() => showSlide(currentIndex + 1), 5000);
+    });
+
+</script>
+{% endblock content %}

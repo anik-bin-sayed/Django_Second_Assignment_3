@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="cart-section">
+    <div class="container">
+        <div class="cart-header">
+            <h1>Shopping Cart</h1>
+        </div>
+        
+        <div class="cart-content">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                {% for item in cart_items %}
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        {% if item.variant.image %}
+                            <img src="{{ item.variant.image.url }}" alt="{{ item.variant.product.name }}" style="height:100px; object-fit:cover;">
+                        {% elif item.variant.product.images.first %}
+                            <img src="{{ item.variant.product.images.first.image.url }}" alt="{{ item.variant.product.name }}" style="height:100px; object-fit:cover;">
+                        {% else %}
+                            <img src="{% static 'images/default-product.png' %}" alt="No Image" style="height:100px; object-fit:cover;">
+                        {% endif %}
+                    </div>
+                    <div class="cart-item-details">
+                        <h3>{{ item.variant.product.name }}</h3>
+                        <p class="item-category">{{ item.variant.product.category.name }}</p>
+                        <div class="item-attributes">
+                            <div class="attribute">
+                                <span class="attr-label">Size:</span>
+                                <span class="attr-value">{{ item.variant.size }}</span>
+                            </div>
+                            <div class="attribute">
+                                <span class="attr-label">Color:</span>
+                                <span class="attr-value">{{ item.variant.color }}</span>
+                            </div>
+                        </div>
+                        <div class="item-price">${{ item.variant.price|default:item.variant.product.current_price }}</div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <a href="{% url 'update_cart_quantity' item.id 'decrease' %}" class=""><i class="fas fa-minus"></i></a>
+                        <input type="number" value="{{ item.quantity }}" min="1" class="qty-input" readonly>
+                        <a href="{% url 'update_cart_quantity' item.id 'increase' %}" class=""><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="cart-item-total">${{ item.subtotal }}</div>
+                    <div class="cart-item-actions">
+                        <a href="{% url 'remove_cart_item' item.id %}" class="btn-icon" title="Remove Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Your cart is empty.</p>
+                {% endfor %}
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>${{ total }}</span>
+                    </div>
+                    <div class="summary-row shipping">
+                        <span>Shipping</span>
+                        <span>$0.00</span>
+                    </div>
+                    <div class="summary-row tax">
+                        <span>Tax</span>
+                        <span>$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>${{ total }}</span>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <a href="{% url 'list_product' %}" class="btn btn-outline btn-block">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary btn-block">
+                        Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

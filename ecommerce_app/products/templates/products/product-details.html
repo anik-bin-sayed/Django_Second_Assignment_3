@@ -1,0 +1,245 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <button class="close-menu"><i class="fas fa-times"></i></button>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Categories</a></li>
+        <li><a href="dashboard.html">New Arrivals</a></li>
+        <li><a href="dashboard.html">Trending</a></li>
+        <li><a href="dashboard.html">Sale</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="order-history.html">Orders</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+    </ul>
+</div>
+
+<!-- Product Details -->
+<section class="product-details">
+    <div class="container">
+        <div class="product-breadcrumb">
+            <a href="{% url 'home' %}">Home</a>
+            <span>/</span>
+
+            {% if category %}
+            <a href="#">{{ category.name }}</a>
+            <span>/</span>
+            {% endif %}
+
+            <span>{{ product.name }}</span>
+        </div>
+
+        <div class="product-main">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    {% if images %}
+                    <img src="{{ images.first.image.url }}" id="mainProductImage" />
+                    {% endif %}
+                </div>
+
+                <div class="thumbnail-images">
+                   <div class="thumbnail {% if forloop.first %}active{% endif %}">
+                        <img src="{{ images.first.image.url }}">
+                    </div>
+                    {% for v in variants %}
+                    {% if v.image %}
+                    <div class="thumbnail {% if forloop.first %}active{% endif %}">
+                        <img src="{{ v.image.url }}">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1>{{ product.name }}</h1>
+
+                <div class="product-price">
+                    {% if product.discount_price %}
+                    <span class="current-price">${{ product.discount_price }}</span>
+                    <span class="original-price">$ {{ product.base_price }}</span>
+                    {% else %}
+                    <span class="current-price">${{ product.base_price }}</span>
+                    {% endif %}
+                </div>
+
+                <p class="product-description">
+                    {{ product.description }}
+                </p>
+
+
+
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <button class="tab-header active" data-tab="description">
+                        Description
+                    </button>
+                    <button class="tab-header" data-tab="details">Details</button>
+                    <button class="tab-header" data-tab="reviews">Reviews (128)</button>
+                    <button class="tab-header" data-tab="shipping">
+                        Shipping & Returns
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="description">
+                    <h3>Product Description</h3>
+                    <p>
+                        Our Premium Cotton T-Shirt is crafted from 100% organic cotton,
+                        providing unmatched softness and comfort. The fabric is pre-shrunk to
+                        ensure it maintains its shape and size after washing. With a regular
+                        fit that's not too tight or too loose, this t-shirt is perfect for any
+                        occasion.
+                    </p>
+                    <p>
+                        The ribbed collar retains its shape without curling, and the
+                        double-stitched hem and sleeves offer enhanced durability. Available
+                        in multiple colors, this versatile staple piece can be dressed up or
+                        down to suit your style.
+                    </p>
+                </div>
+
+                <div class="tab-content" id="details">
+                    <h3>Product Details</h3>
+                    <ul>
+                        <li><strong>Material:</strong> 100% Organic Cotton</li>
+                        <li><strong>Weight:</strong> 180 GSM (Medium Weight)</li>
+                        <li><strong>Fit:</strong> Regular Fit</li>
+                        <li><strong>Neck:</strong> Ribbed Crew Neck</li>
+                        <li><strong>Sleeve:</strong> Short Sleeve</li>
+                        <li>
+                            <strong>Care Instructions:</strong> Machine wash cold, tumble dry
+                            low
+                        </li>
+                        <li><strong>Origin:</strong> Made in USA with imported fabric</li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div class="review-summary">
+                        <div class="overall-rating">
+                            <h4>4.5 <span>/ 5</span></h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p>Based on 128 reviews</p>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="rating-bar">
+                                <span>5 Stars</span>
+                                <div class="bar">
+                                    <div class="fill" style="width: 65%"></div>
+                                </div>
+                                <span>65%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>4 Stars</span>
+                                <div class="bar">
+                                    <div class="fill" style="width: 20%"></div>
+                                </div>
+                                <span>20%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>3 Stars</span>
+                                <div class="bar">
+                                    <div class="fill" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>2 Stars</span>
+                                <div class="bar">
+                                    <div class="fill" style="width: 3%"></div>
+                                </div>
+                                <span>3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>1 Star</span>
+                                <div class="bar">
+                                    <div class="fill" style="width: 2%"></div>
+                                </div>
+                                <span>2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer">
+                                    <h4>Alex Johnson</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">2 weeks ago</span>
+                            </div>
+                            <p>
+                                Great quality t-shirt! Fits perfectly and the fabric is so soft.
+                                Will definitely buy more colors.
+                            </p>
+                        </div>
+
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer">
+                                    <h4>Sarah Miller</h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">1 month ago</span>
+                            </div>
+                            <p>
+                                Good shirt overall, but it shrank a little after the first wash.
+                                Still wearable though.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="shipping">
+                    <h3>Shipping & Returns</h3>
+                    <h4>Shipping Information</h4>
+                    <p>
+                        We offer free standard shipping on all orders over $50. Standard
+                        shipping typically takes 3-5 business days. Expedited shipping options
+                        are available at checkout.
+                    </p>
+
+                    <h4>Return Policy</h4>
+                    <p>
+                        We offer a 30-day return policy for all unworn items in original
+                        condition with tags attached. Return shipping is free for orders
+                        within the United States. Refunds will be processed within 5-7
+                        business days after we receive your return.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+</section>
+
+{% endblock content %}
