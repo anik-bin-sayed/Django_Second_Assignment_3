@@ -48,7 +48,7 @@ All UI screenshots are:
 ![Profile](/ecommerce_app/media/screenshots/Profile.png)
 
 ## Product Details
-![ Product Details](/ecommerce_app/screenshots/Product-details.png)
+![ Product Details](/ecommerce_app/media/screenshots/Product-details.png)
 
 ## Payment
 ![Payment](/ecommerce_app/media/screenshots/payment.png)
