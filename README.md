@@ -27,31 +27,31 @@ All UI screenshots are:
 ![Category list](/ecommerce_app/media/screenshots/category-list.png)
 
 ## Men Category
-![Men Category](/ecommerce_app/media/images/Men-category.png)
+![Men Category](/ecommerce_app/media/screenshots/Men-category.png)
 
 ## Women Category
-![Women Category](/ecommerce_app/media/images/Women-category.png)
+![Women Category](/ecommerce_app/media/screenshots/Women-category.png)
 
 ## Kids Category
-![Home Page](/ecommerce_app/media/images/kids-category.png)
+![Home Page](/ecommerce_app/media/screenshots/kids-category.png)
 
 ## Cart Category
-![Home Page](/ecommerce_app/media/images/cart.png)
+![Home Page](/ecommerce_app/media/screenshots/cart.png)
 
 ## Update Cart
-![Home Page](/ecommerce_app/media/images/update-cart.png)
+![Home Page](/ecommerce_app/media/screenshots/update-cart.png)
 
 ## Checkout
-![Checkout](/ecommerce_app/media/images/checkout.png)
+![Checkout](/ecommerce_app/media/screenshots/checkout.png)
 
 ## Profile
 ![Profile](/ecommerce_app/media/images/Profile.png)
 
 ## Product Details
-![ Product Details](/ecommerce_app/media/images/Product-details.png)
+![ Product Details](/ecommerce_app/screenshots/images/Product-details.png)
 
 ## Payment
-![Payment](/ecommerce_app/media/images/payment.png)
+![Payment](/ecommerce_app/media/screenshots/payment.png)
 
 ## Payment Success
-![Payment Success](/ecommerce_app/media/images/payment-success.png)
+![Payment Success](/ecommerce_app/media/screenshots/payment-success.png)
