@@ -45,10 +45,10 @@ All UI screenshots are:
 ![Checkout](/ecommerce_app/media/screenshots/checkout.png)
 
 ## Profile
-![Profile](/ecommerce_app/media/images/Profile.png)
+![Profile](/ecommerce_app/media/screenshots/Profile.png)
 
 ## Product Details
-![ Product Details](/ecommerce_app/screenshots/images/Product-details.png)
+![ Product Details](/ecommerce_app/screenshots/Product-details.png)
 
 ## Payment
 ![Payment](/ecommerce_app/media/screenshots/payment.png)
